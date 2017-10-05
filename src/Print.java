@@ -21,22 +21,22 @@ public class Print {
         terminal.clearScreen();
         // Print player
         terminal.moveCursor(player.getX(),player.getY());
-        terminal.putCharacter('P');
+        terminal.putCharacter('\u263a');
 
         // Print monsters
         terminal.moveCursor(m1.getPosX(),m1.getPosY());
-        terminal.putCharacter('1');
+        terminal.putCharacter('X');
 
         terminal.moveCursor(m2.getPosX(),m2.getPosY());
-        terminal.putCharacter('2');
+        terminal.putCharacter('X');
 
         terminal.moveCursor(m3.getPosX(),m3.getPosY());
-        terminal.putCharacter('3');
+        terminal.putCharacter('X');
 
         terminal.moveCursor(m4.getPosX(),m4.getPosY());
-        terminal.putCharacter('4');
+        terminal.putCharacter('X');
 
-        terminal.moveCursor(0,0);
+        terminal.setCursorVisible(false);
 
 
     }

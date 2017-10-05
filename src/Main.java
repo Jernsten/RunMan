@@ -1,38 +1,42 @@
+import com.company.Table;
 import com.googlecode.lanterna.*;
 import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.TerminalSize;
 
+import java.io.IOException;
 import java.nio.charset.Charset;
 
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
 
         // Make terminal object
         Terminal terminal = TerminalFacade.createTerminal(System.in, System.out, Charset.forName("UTF8"));
         terminal.enterPrivateMode();
 
-        // Make player object
-        Player player = new Player(20, 20);
+        while (true) {
+            // Make player object
+            Player player = new Player(50, 15);
 
-        // Make four monster objects
-        Monster[] monsters = makeMonsters();
+            // Make four monster objects
+            Monster[] monsters = makeMonsters();
 
-        // Load frontpage
-        loadFrontpage(terminal);
+            // Load frontpage
+            loadFrontpage(terminal);
 
-        // Run game until player dead
-        int counter = play(terminal, player, monsters);
+            // Run game until player dead
+            int counter = play(terminal, player, monsters);
 
-        // Game over
-        gameOver(terminal, player);
+            // Game over
+            gameOver(terminal, player);
 
-        // Show high score
-        showHighScore(terminal, counter);
+            // Show high score
+            showHighScore(terminal, counter);
+        }
     }
 
-    private static void showHighScore(Terminal terminal, int counter) throws InterruptedException {
+    private static void showHighScore(Terminal terminal, int counter) throws InterruptedException, IOException {
         Key key;
         do{
 
@@ -49,6 +53,10 @@ public class Main {
             terminal.moveCursor(10+i,10);
             terminal.putCharacter(score.charAt(i));
         }
+
+        Table table = new Table();
+        table.showTable(counter);
+
     }
 
     private static void loadFrontpage(Terminal terminal) {
@@ -103,10 +111,10 @@ public class Main {
     private static Monster[] makeMonsters() {
         Monster[] monsters = new Monster[4];
 
-        monsters[0] = new Monster(10,10, 40);
-        monsters[1] = new Monster(10,40, 40);
-        monsters[2] = new Monster(40,10, 100);
-        monsters[3] = new Monster(40,40, 100);
+        monsters[0] = new Monster(1,0, 70);
+        monsters[1] = new Monster(0,30, 100);
+        monsters[2] = new Monster(100,0, 80);
+        monsters[3] = new Monster(100,30, 100);
         return monsters;
     }
 
