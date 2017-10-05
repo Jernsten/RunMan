@@ -1,26 +1,47 @@
 public class Monster {
     private int posX;
-    private int pozY;
+    private int posY;
 
-    public Monster(int posX, int pozY) {
+    public Monster(int posX, int posY) {
         this.posX = posX;
-        this.pozY = pozY;
+        this.posY = posY;
     }
 
     public int getPosX() {
         return posX;
     }
 
-    public int getPozY() {
-        return pozY;
+    public int getPosY() {
+        return posY;
     }
 
     public void setPosX(int posX) {
         this.posX = posX;
     }
 
-    public void setPozY(int pozY) {
-        this.pozY = pozY;
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
+
+    public void move(Player player) {
+        int playerX = player.getX();
+        int playerY = player.getY();
+
+        // är avstånd x eller y störst
+
+        if (playerX < posX) {
+            posX -= 1;
+        }
+        if (playerX > posX) {
+            posX += 1;
+        }
+        if (playerY < posY) {
+            posY -= 1;
+        }
+        if (playerY > posY) {
+            posY += 1;
+        }
+
     }
 
 }

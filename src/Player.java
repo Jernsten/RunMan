@@ -2,34 +2,36 @@ import com.googlecode.lanterna.input.Key;
 
 public class Player {
 
-    public int x;
-    public int y;
+    private int x;
+    private int y;
 
-    public setPlayerPos() {
+    public Player(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public void listenKey(){
+    public void setPlayerPos(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
 
-        Key key;
+    public void listenKey(Key key){
+
 
         switch(key.getKind()){
             case ArrowUp:
-                y=y+1;
+                y=y-2;
                 break;
             case ArrowDown:
-                y=y-1;
+                y=y+2;
                 break;
             case ArrowLeft:
-                x=x-1;
+                x=x-2;
                 break;
             case ArrowRight:
-                x=x+1;
+                x=x+2;
                 break;
-
         }
-
     }
 
     public int getX() {
