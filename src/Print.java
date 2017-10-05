@@ -21,7 +21,7 @@ public class Print {
         terminal.clearScreen();
         // Print player
         terminal.moveCursor(player.getX(),player.getY());
-        terminal.putCharacter('\u263a');
+        terminal.putCharacter('♥');
 
         // Print monsters
         terminal.moveCursor(m1.getPosX(),m1.getPosY());
