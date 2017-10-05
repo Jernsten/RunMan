@@ -2,7 +2,6 @@ import com.company.Table;
 import com.googlecode.lanterna.*;
 import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.terminal.TerminalSize;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -23,7 +22,7 @@ public class Main {
             Monster[] monsters = makeMonsters();
 
             // Load frontpage
-            loadFrontpage(terminal);
+            loadFrontPage(terminal);
 
             // Run game until player dead
             int counter = play(terminal, player, monsters);
@@ -59,7 +58,7 @@ public class Main {
 
     }
 
-    private static void loadFrontpage(Terminal terminal) {
+    private static void loadFrontPage(Terminal terminal) {
         String runningman = "R U N N I N G     M A N";
         String text = "Press any key to begin!";
 
