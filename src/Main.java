@@ -1,10 +1,12 @@
-import com.company.Table;
+
 import com.googlecode.lanterna.*;
 import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.terminal.Terminal;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.Scanner;
 
 public class Main {
 
@@ -55,6 +57,26 @@ public class Main {
 
         Table table = new Table();
         table.showTable(counter);
+
+        String highsc = "High score";
+        for (int i = 0; i < highsc.length(); i++) {
+            terminal.moveCursor(50+i,8);
+            terminal.putCharacter(highsc.charAt(i));
+        }
+
+        String fileHigh = "/Users/kemal/Documents/java/Vecka 2/game/RunningMan/Highscore.txt";
+        Scanner sc = new Scanner(new File(fileHigh));
+        int j =0;
+        while (sc.hasNextLine()){
+            String s = sc.nextLine();
+            for (int i = 0; i < s.length(); i++) {
+                terminal.moveCursor(50+i,10+j);
+                terminal.putCharacter(s.charAt(i));
+            }
+            j++;
+        }
+
+
 
     }
 
