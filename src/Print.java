@@ -5,16 +5,14 @@ public class Print {
     // Print board via lanterna
 
     private Monster m1, m2,m3,m4;
-    private Board board;
     private Player player;
 
-    public Print(Monster[] monsters, Board board, Player player) {
+    public Print(Monster[] monsters, Player player) {
 
         this.m1 = monsters[0];
         this.m2 = monsters[1];
         this.m3 = monsters[2];
         this.m4 = monsters[3];
-        this.board = board;
         this.player = player;
     }
 

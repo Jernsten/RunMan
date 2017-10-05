@@ -13,11 +13,8 @@ public class Main {
         Terminal terminal = TerminalFacade.createTerminal(System.in, System.out, Charset.forName("UTF8"));
         terminal.enterPrivateMode();
 
-        // Make board object
-        Board board = new Board(20,20);
-
         // Make player object
-        Player player = new Player(10, 10);
+        Player player = new Player(20, 20);
 
         // Make four monster objects
         Monster[] monsters = makeMonsters();
@@ -26,7 +23,7 @@ public class Main {
         loadFrontpage(terminal);
 
         // Run game until player dead
-        int counter = play(terminal, board, player, monsters);
+        int counter = play(terminal, player, monsters);
 
         // Game over
         gameOver(terminal, player);
@@ -71,7 +68,7 @@ public class Main {
         terminal.moveCursor(0,0);
     }
 
-    private static int play(Terminal terminal, Board board, Player player, Monster[] monsters) throws InterruptedException {
+    private static int play(Terminal terminal, Player player, Monster[] monsters) throws InterruptedException {
         Key key;
         int counter=0;
 
@@ -95,7 +92,7 @@ public class Main {
             }
 
             //When everything is done, we return all positions to Utskrift
-            Print print = new Print(monsters,board,player);
+            Print print = new Print(monsters,player);
             print.PrintL(terminal);
 
             counter++;
@@ -106,10 +103,10 @@ public class Main {
     private static Monster[] makeMonsters() {
         Monster[] monsters = new Monster[4];
 
-        monsters[0] = new Monster(0,0, 40);
-        monsters[1] = new Monster(0,19, 40);
-        monsters[2] = new Monster(19,0, 100);
-        monsters[3] = new Monster(19,19, 100);
+        monsters[0] = new Monster(10,10, 40);
+        monsters[1] = new Monster(10,40, 40);
+        monsters[2] = new Monster(40,10, 100);
+        monsters[3] = new Monster(40,40, 100);
         return monsters;
     }
 
