@@ -1,10 +1,14 @@
+import java.util.Random;
+
 public class Monster {
     private int posX;
     private int posY;
+    private int level;
 
-    public Monster(int posX, int posY) {
+    public Monster(int posX, int posY, int level) {
         this.posX = posX;
         this.posY = posY;
+        this.level = level;
     }
 
     public int getPosX() {
@@ -54,6 +58,24 @@ public class Monster {
         }
         if (playerY > posY) {
             posY += 1;
+        }
+        randomer();
+    }
+
+    private void randomer() {
+        Random rand = new Random();
+        int r = rand.nextInt(100);
+        int andelRandom = level, del = andelRandom/4;
+
+        if (r <= andelRandom) {
+            if (r < del)
+                setPosX(posX+1);
+            else if (r < del*2)
+                setPosX(posX-1);
+            else if (r < del*3)
+                setPosY(posY+1);
+            else
+                setPosY(posY-1);
         }
     }
 
