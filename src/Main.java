@@ -23,16 +23,17 @@ public class Main {
 
 
         // Make monster objects
-        Monster m1 = new Monster(0,0);
-        Monster m2 = new Monster(0,19);
-        Monster m3 = new Monster(19,0);
-        Monster m4 = new Monster(19,19);
+        Monster[] monsters = new Monster[4];
 
+        monsters[0] = new Monster(0,0);
+        monsters[1] = new Monster(0,19);
+        monsters[2] = new Monster(19,0);
+        monsters[3] = new Monster(19,19);
 
         // Run game until player dead
         Key key;
 
-        while(true){
+        while(isAlive(player, monsters)){
 
             //wait for a key to be pressed
 
@@ -48,20 +49,16 @@ public class Main {
             int playerX = player.getX(), playerY = player.getY();
 
             //Monster1, send monster1 place (X,Y), and Player place (X,Y) - return new position
-            m1.move(player);
-            m2.move(player);
-            m3.move(player);
-            m4.move(player);
 
-            int m1X = m1.getPosX(), m1Y = m1.getPosY();
-            int m2X = m2.getPosX(), m2Y = m2.getPosY();
-            int m3X = m3.getPosX(), m3Y = m3.getPosY();
-            int m4X = m4.getPosX(), m4Y = m4.getPosY();
+            for (int i = 0; i < monsters.length; i++) {
+                monsters[i].move(player, monsters, i);
+            }
+
 
 
             //When everything is done, we return all positions to Utskrift
 
-            Print print = new Print(m1,m2,m3,m4,board,player);
+            Print print = new Print(monsters,board,player);
             print.PrintL(terminal);
 
 
@@ -69,7 +66,27 @@ public class Main {
 
 
         // Game over
+        gameOver(terminal, player);
 
 
+    }
+
+    private static void gameOver(Terminal terminal, Player player) {
+        String gameOver = "Game Over";
+
+        for (int i = 0; i < gameOver.length(); i++) {
+            terminal.moveCursor(player.getX()+i,player.getY());
+            terminal.putCharacter(gameOver.charAt(i));
+        }
+        terminal.moveCursor(0,0);
+    }
+
+    private static boolean isAlive(Player player, Monster[] monsters) {
+        for (int i = 0; i < monsters.length; i++) {
+            if (player.getX() == monsters[i].getPosX() && player.getY() == monsters[i].getPosY()){
+                return false;
+            }
+        }
+        return true;
     }
 }

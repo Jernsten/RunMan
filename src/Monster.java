@@ -23,12 +23,26 @@ public class Monster {
         this.posY = posY;
     }
 
-    public void move(Player player) {
+    public void move(Player player, Monster[] monsters, int monstrNr) {
         int playerX = player.getX();
         int playerY = player.getY();
 
-        // är avstånd x eller y störst
+        // Moves monster
+        movesMonster(playerX, playerY);
 
+        for (int i = 0; i < monsters.length; i++) {
+            if (i == monstrNr){
+                continue;
+            }
+
+            if (monsters[i].getPosX() == posX && monsters[i].getPosY() == posY){
+                movesMonster(playerX,playerY);
+            }
+        }
+
+    }
+
+    private void movesMonster(int playerX, int playerY) {
         if (playerX < posX) {
             posX -= 1;
         }
@@ -41,7 +55,6 @@ public class Monster {
         if (playerY > posY) {
             posY += 1;
         }
-
     }
 
 }

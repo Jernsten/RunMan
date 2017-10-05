@@ -8,11 +8,12 @@ public class Print {
     private Board board;
     private Player player;
 
-    public Print(Monster m1, Monster m2, Monster m3, Monster m4, Board board, Player player) {
-        this.m1 = m1;
-        this.m2 = m2;
-        this.m3 = m3;
-        this.m4 = m4;
+    public Print(Monster[] monsters, Board board, Player player) {
+
+        this.m1 = monsters[0];
+        this.m2 = monsters[1];
+        this.m3 = monsters[2];
+        this.m4 = monsters[3];
         this.board = board;
         this.player = player;
     }
